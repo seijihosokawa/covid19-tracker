@@ -4,7 +4,18 @@ export default function App() {
   return (
     <div className="App">
       <h1>Covid 19 tracker</h1>
-      <h2>TEsting change</h2>
+
+      {/* header */}
+
+      {/* Title */}
+
+      {/* info */}
+      {/* info */}
+      {/* info */}
+
+      {/* Table */}
+
+      {/* Map */}
     </div>
   );
 }
