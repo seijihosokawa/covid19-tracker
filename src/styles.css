@@ -1,9 +1,33 @@
 .App {
   font-family: sans-serif;
   text-align: center;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 20px;
+}
+
+body {
+  background-color: #919191;
+}
+
+.app__left {
+  flex: 0.9;
 }
 
 .app__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.app__stats {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 800px) {
+  .App {
+    flex-direction: column;
+  }
 }
