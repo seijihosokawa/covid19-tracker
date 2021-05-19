@@ -3,6 +3,7 @@ import { Line } from "react-chartjs-2";
 import numeral from "numeral";
 
 const options = {
+  animation: false,
   legend: {
     display: false
   },
@@ -33,9 +34,6 @@ const options = {
     ],
     yAxes: [
       {
-        gridLines: {
-          display: false
-        },
         ticks: {
           // Include a dollar sign in the ticks
           callback: function (value, index, values) {
@@ -68,15 +66,13 @@ function LineGraph({ casesType }) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=120")
+      await fetch("https://disease.sh/v3/covid-19/historical/all?lastdays=90")
         .then((response) => {
           return response.json();
         })
         .then((data) => {
           let chartData = buildChartData(data, casesType);
           setData(chartData);
-          console.log(chartData);
-          // buildChart(chartData);
         });
     };
 
@@ -87,16 +83,17 @@ function LineGraph({ casesType }) {
     <div>
       {data?.length > 0 && (
         <Line
+          options={options}
           data={{
             datasets: [
               {
+                label: "Cases",
                 backgroundColor: "rgba(204, 16, 52, 0.5)",
                 borderColor: "#CC1034",
                 data: data
               }
             ]
           }}
-          options={options}
         />
       )}
     </div>
