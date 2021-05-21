@@ -10,7 +10,7 @@ import {
 import InfoBox from "./InfoBox";
 import Map from "./Map";
 import Table from "./Table";
-import { sortData } from "./util";
+import { sortData, prettyPrintStat } from "./util";
 import LineGraph from "./LineGraph";
 import "leaflet/dist/leaflet.css";
 
@@ -66,10 +66,10 @@ export default function App() {
       .then((data) => {
         setCountry(countryCode);
         setCountryInfo(data);
-      });
-    //console.log(countryInfo);
 
-    //console.log(countryCode);
+        setMapCenter([data.countryInfo.lat, data.countryInfo.long]);
+        setMapZoom(4);
+      });
   };
 
   return (
@@ -93,19 +93,25 @@ export default function App() {
 
         <div className="app__stats">
           <InfoBox
+            onClick={(e) => setCasesType("cases")}
             title="Coronavirus Cases"
-            cases={countryInfo.todayCases}
-            total={countryInfo.cases}
+            active={casesType === "cases"}
+            cases={prettyPrintStat(countryInfo.todayCases)}
+            total={prettyPrintStat(countryInfo.cases)}
           />
           <InfoBox
+            onClick={(e) => setCasesType("recovered")}
             title="Recovered"
-            cases={countryInfo.todayRecovered}
-            total={countryInfo.recovered}
+            active={casesType === "recovered"}
+            cases={prettyPrintStat(countryInfo.todayRecovered)}
+            total={prettyPrintStat(countryInfo.recovered)}
           />
           <InfoBox
+            onClick={(e) => setCasesType("deaths")}
             title="Deaths"
-            cases={countryInfo.todayDeaths}
-            total={countryInfo.deaths}
+            active={casesType === "deaths"}
+            cases={prettyPrintStat(countryInfo.todayDeaths)}
+            total={prettyPrintStat(countryInfo.deaths)}
           />
         </div>
         <div className="app__map">
@@ -121,8 +127,8 @@ export default function App() {
         <CardContent>
           <h3>Live Cases by Country</h3>
           <Table countries={tableData}></Table>
-          <h3>World Wide new cases</h3>
-          <LineGraph />
+          <h3>World Wide New {casesType} </h3>
+          <LineGraph casesType={casesType} />
         </CardContent>
       </Card>
     </div>
