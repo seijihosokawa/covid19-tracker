@@ -1,4 +1,4 @@
-# Covid19-tracker
+# Covid-19 Tracker
 
 This is a Covid-19 Tracker using React.js and Material-UI.
 
