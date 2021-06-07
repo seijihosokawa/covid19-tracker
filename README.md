@@ -12,4 +12,4 @@ This was my first project using React and I wanted to create a simple dashboard 
 References:
   * https://reactjs.org/docs/getting-started.html
   * https://material-ui.com/getting-started/usage/
-  * https://disease.sh/v3/covid-19/countries
+  * https://disease.sh/
